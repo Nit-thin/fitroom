@@ -1,0 +1,55 @@
+   <h1>TEST CHANGE</h1>
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">User Management</h2>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Admin</th>
+                <th>Profile Picture</th>
+                <th>Bio</th>
+                <th>Password</th>
+                <th>Workouts Created</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{% if user.is_admin %}<span class="badge bg-success">Yes</span>{% else %}No{% endif %}</td>
+                <td>
+                    {% if user.profile_picture %}
+                        <img src="{{ user.profile_picture }}" alt="Profile" style="width:40px;height:40px;border-radius:50%;">
+                    {% else %}
+                        <span class="text-muted">N/A</span>
+                    {% endif %}
+                </td>
+                <td>{{ user.bio or 'N/A' }}</td>
+                <td>
+                    <form method="POST" action="{{ url_for('admin_reset_password', user_id=user.id) }}" style="display:inline;">
+                        <button type="submit" class="btn btn-warning btn-sm" onclick="return confirm('Reset password for {{ user.username }}?');">Reset</button>
+                    </form>
+                </td>
+                <td>{{ user_workout_counts[user.id] }}</td>
+                <td>
+                    {% if user.id != current_user.id %}
+                    <form method="POST" action="{{ url_for('admin_delete_user', user_id=user.id) }}" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this user?');">Delete</button>
+                    </form>
+                    {% else %}
+                    <span class="text-muted">(You)</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

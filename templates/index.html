@@ -1,0 +1,264 @@
+{% extends "base.html" %}
+
+{% block title %}Be Fit & Fine - Your Journey to Fitness & Wellness{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 hero-content">
+                <h1 class="hero-title">Be Fit & Fine</h1>
+                <p class="lead fw-bold text-primary mb-2" style="font-family: 'Pacifico', cursive; font-size: 1.5rem;">
+                    Stronger. Healthier. Happier. 
+                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" style="height: 30px; width: auto; vertical-align: middle; margin-left: 8px;">
+                </p>
+                <p class="hero-subtitle">Discover personalized workouts, track your progress, and achieve your fitness goals with our comprehensive platform designed for every fitness level.</p>
+                <div class="d-flex gap-3 flex-wrap">
+                    {% if current_user.is_authenticated %}
+                        {% if not (current_user.is_admin or current_user.email == 'admin@fitroom.com') %}
+                        <a href="{{ url_for('workouts') }}" class="btn btn-light btn-lg">
+                            <i class="fas fa-play me-2"></i>Start Working Out
+                        </a>
+                        {% endif %}
+                        <a href="{{ url_for('profile') }}" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-user me-2"></i>View Profile
+                        </a>
+                    {% else %}
+                        <a href="{{ url_for('login') }}" class="btn btn-light btn-lg">
+                            <i class="fas fa-sign-in-alt me-2"></i>Sign In
+                        </a>
+                        <a href="{{ url_for('register') }}" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-user-plus me-2"></i>Join Free
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" style="height: 200px; width: auto; display: inline-block; margin-top: 1rem;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-4 fw-bold mb-3">Why Choose Fitroom?</h2>
+                <p class="lead text-muted">Everything you need to achieve your fitness goals in one place</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <h4 class="mb-3">Expert Workouts</h4>
+                    <p class="text-muted">Access hundreds of professionally designed workouts for all fitness levels, from beginner to advanced.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4 class="mb-3">Progress Tracking</h4>
+                    <p class="text-muted">Monitor your fitness journey with detailed analytics, progress photos, and performance metrics.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h4 class="mb-3">Community Support</h4>
+                    <p class="text-muted">Connect with like-minded fitness enthusiasts, share achievements, and stay motivated together.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% if not (current_user.is_admin or current_user.email == 'admin@fitroom.com') %}
+<!-- Popular Workouts Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Popular Workouts</h2>
+                <p class="lead text-muted">Start with these trending workouts loved by our community</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="card workout-card h-100">
+                    <img src="{{ url_for('static', filename='images/full body hiit.jpg') }}" 
+                         onerror="this.onerror=null;this.src='https://via.placeholder.com/400x250/6366f1/ffffff?text=HIIT+Workout'"
+                         class="card-img-top" 
+                         alt="Full Body HIIT">
+                    <div class="workout-badge">Beginner</div>
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Full Body HIIT</h5>
+                        <p class="card-text text-muted">High-intensity interval training to burn calories and build endurance.</p>
+                        <div class="mt-auto">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="badge bg-primary">30 min</span>
+                                <span class="badge bg-success">Cardio</span>
+                            </div>
+                            {% if current_user.is_authenticated %}
+                                <a href="{{ url_for('workout_detail', workout_id=1) }}" class="btn btn-primary w-100">
+                                    Start Workout
+                                </a>
+                            {% else %}
+                                <a href="{{ url_for('login') }}" class="btn btn-primary w-100">
+                                    <i class="fas fa-sign-in-alt me-2"></i>Sign In to Start
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="card workout-card h-100">
+                    <img src="{{ url_for('static', filename='images/upper body strength.jpg') }}" 
+                         onerror="this.onerror=null;this.src='https://via.placeholder.com/400x250/f59e0b/ffffff?text=Strength+Training'"
+                         class="card-img-top" 
+                         alt="Upper Body Strength">
+                    <div class="workout-badge">Intermediate</div>
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Upper Body Strength</h5>
+                        <p class="card-text text-muted">Build muscle and strength with this comprehensive upper body workout.</p>
+                        <div class="mt-auto">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="badge bg-primary">45 min</span>
+                                <span class="badge bg-warning">Strength</span>
+                            </div>
+                            {% if current_user.is_authenticated %}
+                                <a href="{{ url_for('workout_detail', workout_id=2) }}" class="btn btn-primary w-100">
+                                    Start Workout
+                                </a>
+                            {% else %}
+                                <a href="{{ url_for('login') }}" class="btn btn-primary w-100">
+                                    <i class="fas fa-sign-in-alt me-2"></i>Sign In to Start
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="card workout-card h-100">
+                    <img src="{{ url_for('static', filename='images/morning yoga flow.jpg') }}" 
+                         onerror="this.onerror=null;this.src='https://via.placeholder.com/400x250/10b981/ffffff?text=Yoga+Flow'"
+                         class="card-img-top" 
+                         alt="Morning Yoga Flow">
+                    <div class="workout-badge">All Levels</div>
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Morning Yoga Flow</h5>
+                        <p class="card-text text-muted">Start your day with this energizing yoga sequence for flexibility and mindfulness.</p>
+                        <div class="mt-auto">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="badge bg-primary">20 min</span>
+                                <span class="badge bg-info">Flexibility</span>
+                            </div>
+                            {% if current_user.is_authenticated %}
+                                <a href="{{ url_for('workout_detail', workout_id=3) }}" class="btn btn-primary w-100">
+                                    Start Workout
+                                </a>
+                            {% else %}
+                                <a href="{{ url_for('login') }}" class="btn btn-primary w-100">
+                                    <i class="fas fa-sign-in-alt me-2"></i>Sign In to Start
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-5">
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('workouts') }}" class="btn btn-outline-primary btn-lg">
+                    View All Workouts
+                    <i class="fas fa-arrow-right ms-2"></i>
+                </a>
+            {% else %}
+                <a href="{{ url_for('login') }}" class="btn btn-outline-primary btn-lg">
+                    <i class="fas fa-sign-in-alt me-2"></i>Sign In to View All Workouts
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Stats Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="stats-card">
+                    <div class="stats-number">10K+</div>
+                    <div class="stats-label">Active Users</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card">
+                    <div class="stats-number">500+</div>
+                    <div class="stats-label">Workouts</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card">
+                    <div class="stats-number">50+</div>
+                    <div class="stats-label">Expert Trainers</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card">
+                    <div class="stats-number">1M+</div>
+                    <div class="stats-label">Workouts Completed</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Ready to Start Your Fitness Journey?</h2>
+                <p class="lead mb-4">Join thousands of users who have transformed their lives with Fitroom</p>
+                <div class="d-flex gap-3 justify-content-center flex-wrap">
+                    {% if current_user.is_authenticated %}
+                        {% if not (current_user.is_admin or current_user.email == 'admin@fitroom.com') %}
+                        <a href="{{ url_for('workouts') }}" class="btn btn-light btn-lg">
+                            <i class="fas fa-play me-2"></i>Start Working Out
+                        </a>
+                        {% endif %}
+                        <a href="{{ url_for('profile') }}" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-user me-2"></i>View Profile
+                        </a>
+                    {% else %}
+                        <a href="{{ url_for('register') }}" class="btn btn-light btn-lg">
+                            <i class="fas fa-user-plus me-2"></i>Get Started Free
+                        </a>
+                        <a href="{{ url_for('login') }}" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-sign-in-alt me-2"></i>Sign In
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 

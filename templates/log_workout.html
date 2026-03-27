@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}Log Workout{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">Log Workout for {{ workout_plan.name }}</h4>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        <div class="mb-3">
+                            <label for="workout_id" class="form-label">Workout</label>
+                            <select class="form-select" id="workout_id" name="workout_id" required>
+                                <option value="">Select Workout</option>
+                                {% for workout in workouts %}
+                                <option value="{{ workout.id }}">{{ workout.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="completed" name="completed" checked>
+                            <label class="form-check-label" for="completed">Completed</label>
+                        </div>
+                        <div class="mb-3">
+                            <label for="notes" class="form-label">Notes</label>
+                            <textarea class="form-control" id="notes" name="notes" rows="1"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Log Workout</button>
+                        <a href="{{ url_for('my_plans') }}" class="btn btn-secondary ms-2">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

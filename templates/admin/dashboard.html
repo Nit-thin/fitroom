@@ -1,0 +1,294 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard - Be Fit & Fine{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- Header Section -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card bg-gradient-primary text-white">
+                <div class="card-body p-4">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h1 class="display-6 fw-bold mb-2">
+                                <span style="font-family: 'Pacifico', cursive; color: #fff; text-shadow: 1px 1px 6px #6366f1, 0 2px 8px #0002; font-size: 1.5rem; vertical-align: middle;">💪 <span style='font-size:1.2rem;'>Be</span> <span style='font-size:2.2rem;'>Fit & Fine</span></span>
+                </h1>
+                            <p class="lead mb-0">Welcome back, {{ current_user.username }}! Manage your fitness platform efficiently.</p>
+                        </div>
+                        <div class="col-md-4 text-md-end">
+                            <div class="d-flex gap-2 flex-wrap justify-content-md-end">
+                                <a href="{{ url_for('admin_workouts') }}" class="btn btn-light btn-sm">
+                                    <i class="fas fa-dumbbell me-2"></i>Workouts
+                    </a>
+                                <a href="{{ url_for('admin_exercises') }}" class="btn btn-outline-light btn-sm">
+                                    <i class="fas fa-running me-2"></i>Exercises
+                    </a>
+                                <a href="{{ url_for('admin_users') }}" class="btn btn-outline-light btn-sm">
+                                    <i class="fas fa-users me-2"></i>Users
+                    </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="row g-4 mb-5">
+        <div class="col-lg-3 col-md-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center">
+                    <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-dumbbell fa-2x text-primary"></i>
+                    </div>
+                    <h3 class="fw-bold text-primary mb-1">{{ workouts_count }}</h3>
+                    <p class="text-muted mb-0">Total Workouts</p>
+                    <small class="text-success">
+                        <i class="fas fa-arrow-up me-1"></i>Active
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center">
+                    <div class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-running fa-2x text-success"></i>
+                    </div>
+                    <h3 class="fw-bold text-success mb-1">{{ exercises_count }}</h3>
+                    <p class="text-muted mb-0">Total Exercises</p>
+                    <small class="text-success">
+                        <i class="fas fa-arrow-up me-1"></i>Available
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center">
+                    <div class="bg-info bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-users fa-2x text-info"></i>
+                    </div>
+                    <h3 class="fw-bold text-info mb-1">{{ users_count }}</h3>
+                    <p class="text-muted mb-0">Registered Users</p>
+                    <small class="text-success">
+                        <i class="fas fa-arrow-up me-1"></i>Growing
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body text-center">
+                    <div class="bg-warning bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-chart-line fa-2x text-warning"></i>
+                    </div>
+                    <h3 class="fw-bold text-warning mb-1">100%</h3>
+                    <p class="text-muted mb-0">System Health</p>
+                    <small class="text-success">
+                        <i class="fas fa-check-circle me-1"></i>Optimal
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Management Sections -->
+    <div class="row g-4">
+        <!-- Quick Actions -->
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h5 class="mb-0 fw-bold">
+                        <i class="fas fa-bolt me-2 text-primary"></i>Quick Management Actions
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        <!-- Workouts & Exercises -->
+                        <div class="col-md-6">
+                            <div class="d-grid">
+                                <a href="{{ url_for('admin_add_workout') }}" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-plus me-2"></i>Add New Workout
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-grid">
+                                <a href="{{ url_for('admin_add_exercise') }}" class="btn btn-success btn-lg">
+                                    <i class="fas fa-plus me-2"></i>Add New Exercise
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Plan Management -->
+                        <div class="col-md-6">
+                            <div class="d-grid">
+                                <a href="{{ url_for('admin_add_diet_plan') }}" class="btn btn-info btn-lg">
+                                    <i class="fas fa-plus me-2"></i>Add Diet Plan
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-grid">
+                                <a href="{{ url_for('admin_add_workout_plan') }}" class="btn btn-warning btn-lg">
+                                    <i class="fas fa-plus me-2"></i>Add Workout Plan
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Manage Existing -->
+                        <div class="col-md-3">
+                            <div class="d-grid">
+                                <a href="{{ url_for('admin_workouts') }}" class="btn btn-outline-primary">
+                                    <i class="fas fa-edit me-2"></i>Manage Workouts
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="d-grid">
+                                <a href="{{ url_for('admin_exercises') }}" class="btn btn-outline-success">
+                                    <i class="fas fa-edit me-2"></i>Manage Exercises
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="d-grid">
+                                <a href="{{ url_for('admin_diet_plans') }}" class="btn btn-outline-info">
+                                    <i class="fas fa-edit me-2"></i>Manage Diet Plans
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="d-grid">
+                                <a href="{{ url_for('admin_workout_plans') }}" class="btn btn-outline-warning">
+                                    <i class="fas fa-edit me-2"></i>Manage Workout Plans
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- User Management -->
+                        <div class="col-md-12">
+                            <div class="d-grid">
+                                <a href="{{ url_for('admin_users') }}" class="btn btn-outline-secondary">
+                                    <i class="fas fa-users me-2"></i>Manage Users
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- System Overview -->
+        <div class="card border-0 shadow-sm mt-4">
+            <div class="card-header bg-white border-0">
+                <h5 class="mb-0 fw-bold">
+                    <i class="fas fa-chart-bar me-2 text-success"></i>Platform Overview
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center p-3 bg-light rounded">
+                            <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <i class="fas fa-dumbbell text-primary"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-1 fw-bold">Workout Categories</h6>
+                                <p class="text-muted mb-0">{{ workout_categories|join(', ') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center p-3 bg-light rounded">
+                            <div class="bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <i class="fas fa-running text-success"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-1 fw-bold">Exercise Types</h6>
+                                <p class="text-muted mb-0">{{ exercise_types|join(', ') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center p-3 bg-light rounded">
+                            <div class="bg-info bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <i class="fas fa-utensils text-info"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-1 fw-bold">Diet Plans</h6>
+                                <p class="text-muted mb-0">{{ diet_plan_goals|join(', ') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center p-3 bg-light rounded">
+                            <div class="bg-warning bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <i class="fas fa-calendar-alt text-warning"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-1 fw-bold">Workout Plans</h6>
+                                <p class="text-muted mb-0">{{ workout_plan_names|join(', ') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Recent Activity & Alerts -->
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h5 class="mb-0 fw-bold">
+                        <i class="fas fa-bell me-2 text-warning"></i>Recent Activity
+                    </h5>
+                </div>
+                <div class="card-body p-0">
+                    <div class="list-group list-group-flush">
+                        {% for activity in recent_activities %}
+                        <div class="list-group-item border-0 d-flex align-items-center">
+                            <div class="bg-{{ activity.color }} bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                                <i class="{{ activity.icon }} text-{{ activity.color }}"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-1">{{ activity.title }}</h6>
+                                <small class="text-muted">{{ activity.description }}</small>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- System Alerts -->
+            <div class="card border-0 shadow-sm mt-4">
+                <div class="card-header bg-white border-0">
+                    <h5 class="mb-0 fw-bold">
+                        <i class="fas fa-exclamation-triangle me-2 text-danger"></i>System Alerts
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-success d-flex align-items-center" role="alert">
+                        <i class="fas fa-check-circle me-2"></i>
+                        <div>
+                            <strong>All Systems Operational</strong><br>
+                            <small>No issues detected</small>
+                        </div>
+                    </div>
+                    <div class="alert alert-info d-flex align-items-center" role="alert">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <div>
+                            <strong>Backup Completed</strong><br>
+                            <small>Database backup successful</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

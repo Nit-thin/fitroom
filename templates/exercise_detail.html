@@ -1,0 +1,266 @@
+{% extends "base.html" %}
+
+{% block title %}{{ exercise.name }} - Be Fit & Fine{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <!-- Exercise Details -->
+        <div class="col-lg-8">
+            <div class="text-center mb-4">
+                <span style="font-size: 5rem; display: inline-block;">🤸</span>
+            </div>
+            <div class="card shadow-sm mb-4">
+                <img src="{{ url_for('static', filename='images/' + exercise.name|lower + '.jpg') }}"
+                     onerror="this.onerror=null;this.src='{{ exercise.image_url or 'https://via.placeholder.com/800x400/6366f1/ffffff?text=' + exercise.name }}'"
+                     class="card-img-top" alt="{{ exercise.name }}">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div>
+                            <h1 class="fw-bold mb-4">
+                                <span style="font-family: 'Pacifico', cursive; color: #6366f1; background: #fff; padding: 0 0.5em; border-radius: 0.3em; font-size: 1.5rem; vertical-align: middle;">💪 <span style='font-size:1.2rem;'>Be</span> <span style='font-size:2.2rem;'>Fit & Fine</span></span>
+                            </h1>
+                            <div class="d-flex gap-2 mb-3">
+                                <span class="badge bg-primary">{{ exercise.muscle_group }}</span>
+                                <span class="badge bg-secondary">{{ exercise.equipment }}</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-lg">
+                            <i class="fas fa-play me-2"></i>Watch Demo
+                        </button>
+                    </div>
+                    
+                    <p class="card-text lead">{{ exercise.description or 'A comprehensive exercise designed to target specific muscle groups and improve overall fitness.' }}</p>
+                    
+                    <div class="row g-3 mt-4">
+                        <div class="col-md-4">
+                            <div class="text-center p-3 bg-light rounded">
+                                <i class="fas fa-dumbbell fa-2x text-primary mb-2"></i>
+                                <h5 class="mb-1">{{ exercise.muscle_group }}</h5>
+                                <small class="text-muted">Muscle Group</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center p-3 bg-light rounded">
+                                <i class="fas fa-tools fa-2x text-warning mb-2"></i>
+                                <h5 class="mb-1">{{ exercise.equipment }}</h5>
+                                <small class="text-muted">Equipment</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center p-3 bg-light rounded">
+                                <i class="fas fa-star fa-2x text-success mb-2"></i>
+                                <h5 class="mb-1">4.8/5</h5>
+                                <small class="text-muted">Rating</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercise Instructions -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-list-ol me-2"></i>How to Perform
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="mb-3">Step-by-Step Instructions</h5>
+                            <ol class="list-group list-group-numbered">
+                                {% for step in exercise.instructions_list %}
+                                <li class="list-group-item border-0 ps-0">{{ step }}</li>
+                                {% else %}
+                                <li class="list-group-item border-0 ps-0 text-muted">No instructions provided.</li>
+                                {% endfor %}
+                            </ol>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="mb-3">Key Points</h5>
+                            <ul class="list-group list-group-flush">
+                                {% for point in exercise.key_points_list %}
+                                <li class="list-group-item border-0 ps-0">
+                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                    {{ point }}
+                                </li>
+                                {% else %}
+                                <li class="list-group-item border-0 ps-0 text-muted">No key points provided.</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Demo -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">
+                        <i class="fas fa-video me-2"></i>Video Demonstration
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                                title="Exercise Demo" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Variations -->
+            <div class="card shadow-sm">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">
+                        <i class="fas fa-lightbulb me-2"></i>Exercise Variations
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h6 class="card-title">Beginner Variation</h6>
+                                    <p class="card-text text-muted">Modified version for those new to this exercise.</p>
+                                    <small class="text-muted">Difficulty: Easy</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h6 class="card-title">Advanced Variation</h6>
+                                    <p class="card-text text-muted">Challenging version for experienced fitness enthusiasts.</p>
+                                    <small class="text-muted">Difficulty: Hard</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            <!-- Exercise Stats -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">
+                        <i class="fas fa-chart-bar me-2"></i>Exercise Stats
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row text-center">
+                        <div class="col-6">
+                            <div class="stats-number text-primary">4.8</div>
+                            <div class="stats-label">Rating</div>
+                        </div>
+                        <div class="col-6">
+                            <div class="stats-number text-success">1.2K</div>
+                            <div class="stats-label">Reviews</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommended Sets & Reps -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">
+                        <i class="fas fa-target me-2"></i>Recommended Sets & Reps
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <h6 class="mb-2">Beginner</h6>
+                        <div class="d-flex justify-content-between">
+                            <span>Sets: 2-3</span>
+                            <span>Reps: 8-12</span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <h6 class="mb-2">Intermediate</h6>
+                        <div class="d-flex justify-content-between">
+                            <span>Sets: 3-4</span>
+                            <span>Reps: 10-15</span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <h6 class="mb-2">Advanced</h6>
+                        <div class="d-flex justify-content-between">
+                            <span>Sets: 4-5</span>
+                            <span>Reps: 12-20</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Similar Exercises -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">
+                        <i class="fas fa-lightbulb me-2"></i>Similar Exercises
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="list-group list-group-flush">
+                        <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
+                            <img src="https://via.placeholder.com/40x40/6366f1/ffffff?text=Ex1" 
+                                 class="rounded me-3" 
+                                 alt="Exercise 1">
+                            <div>
+                                <h6 class="mb-1">Similar Exercise 1</h6>
+                                <small class="text-muted">Same muscle group</small>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
+                            <img src="https://via.placeholder.com/40x40/f59e0b/ffffff?text=Ex2" 
+                                 class="rounded me-3" 
+                                 alt="Exercise 2">
+                            <div>
+                                <h6 class="mb-1">Similar Exercise 2</h6>
+                                <small class="text-muted">Same equipment</small>
+                            </div>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
+                            <img src="https://via.placeholder.com/40x40/10b981/ffffff?text=Ex3" 
+                                 class="rounded me-3" 
+                                 alt="Exercise 3">
+                            <div>
+                                <h6 class="mb-1">Similar Exercise 3</h6>
+                                <small class="text-muted">Alternative variation</small>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="card shadow-sm">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">
+                        <i class="fas fa-bolt me-2"></i>Quick Actions
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-plus me-2"></i>Add to Workout
+                        </button>
+                        <button class="btn btn-outline-primary">
+                            <i class="fas fa-heart me-2"></i>Add to Favorites
+                        </button>
+                        <button class="btn btn-outline-secondary">
+                            <i class="fas fa-share me-2"></i>Share Exercise
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Exercise - Admin{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-warning text-dark">
+                    <h4 class="mb-0">
+                        <i class="fas fa-edit me-2"></i>Edit Exercise
+                    </h4>
+                </div>
+                <div class="card-body">
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+
+                    <form method="POST">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label">Exercise Name *</label>
+                                <input type="text" class="form-control" id="name" name="name" 
+                                       value="{{ exercise.name }}" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="muscle_group" class="form-label">Muscle Group *</label>
+                                <select class="form-select" id="muscle_group" name="muscle_group" required>
+                                    <option value="">Select muscle group</option>
+                                    <option value="Chest" {% if exercise.muscle_group == 'Chest' %}selected{% endif %}>Chest</option>
+                                    <option value="Back" {% if exercise.muscle_group == 'Back' %}selected{% endif %}>Back</option>
+                                    <option value="Shoulders" {% if exercise.muscle_group == 'Shoulders' %}selected{% endif %}>Shoulders</option>
+                                    <option value="Arms" {% if exercise.muscle_group == 'Arms' %}selected{% endif %}>Arms</option>
+                                    <option value="Legs" {% if exercise.muscle_group == 'Legs' %}selected{% endif %}>Legs</option>
+                                    <option value="Core" {% if exercise.muscle_group == 'Core' %}selected{% endif %}>Core</option>
+                                    <option value="Full Body" {% if exercise.muscle_group == 'Full Body' %}selected{% endif %}>Full Body</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="equipment" class="form-label">Equipment</label>
+                                <select class="form-select" id="equipment" name="equipment">
+                                    <option value="Bodyweight" {% if exercise.equipment == 'Bodyweight' %}selected{% endif %}>Bodyweight</option>
+                                    <option value="Dumbbells" {% if exercise.equipment == 'Dumbbells' %}selected{% endif %}>Dumbbells</option>
+                                    <option value="Barbell" {% if exercise.equipment == 'Barbell' %}selected{% endif %}>Barbell</option>
+                                    <option value="Resistance Bands" {% if exercise.equipment == 'Resistance Bands' %}selected{% endif %}>Resistance Bands</option>
+                                    <option value="Kettlebell" {% if exercise.equipment == 'Kettlebell' %}selected{% endif %}>Kettlebell</option>
+                                    <option value="Machine" {% if exercise.equipment == 'Machine' %}selected{% endif %}>Machine</option>
+                                    <option value="Cable" {% if exercise.equipment == 'Cable' %}selected{% endif %}>Cable</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="video_url" class="form-label">Video URL</label>
+                                <input type="url" class="form-control" id="video_url" name="video_url" 
+                                       value="{{ exercise.video_url }}" placeholder="https://example.com/video.mp4">
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+    <h5>How to Perform</h5>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Step-by-Step Instructions</label>
+            <ul class="list-group mb-2" id="instructions-list">
+                {% for step in exercise.instructions_list %}
+                <li class="list-group-item d-flex align-items-center">
+                    <input type="text" class="form-control me-2 instruction-input" value="{{ step }}" />
+                    <button type="button" class="btn btn-danger btn-sm remove-instruction">&times;</button>
+                </li>
+                {% endfor %}
+            </ul>
+            <button type="button" class="btn btn-outline-primary btn-sm" id="add-instruction">Add Step</button>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Key Points</label>
+            <ul class="list-group mb-2" id="keypoints-list">
+                {% for point in exercise.key_points_list %}
+                <li class="list-group-item d-flex align-items-center">
+                    <input type="text" class="form-control me-2 keypoint-input" value="{{ point }}" />
+                    <button type="button" class="btn btn-danger btn-sm remove-keypoint">&times;</button>
+                </li>
+                {% endfor %}
+            </ul>
+            <button type="button" class="btn btn-outline-primary btn-sm" id="add-keypoint">Add Key Point</button>
+        </div>
+    </div>
+    <!-- Hidden fields to store JSON -->
+    <input type="hidden" name="instructions_json" id="instructions_json" />
+    <input type="hidden" name="key_points_json" id="key_points_json" />
+</div>
+
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description *</label>
+                            <textarea class="form-control" id="description" name="description" rows="4" required>{{ exercise.description }}</textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="image_url" class="form-label">Image URL</label>
+                            <input type="url" class="form-control" id="image_url" name="image_url" 
+                                   value="{{ exercise.image_url }}" placeholder="https://example.com/image.jpg">
+                            <div class="form-text">Optional: URL to exercise image</div>
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-warning">
+                                <i class="fas fa-save me-2"></i>Update Exercise
+                            </button>
+                            <a href="{{ url_for('admin_exercises') }}" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left me-2"></i>Back to Exercises
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Dynamic instructions UI
+    function updateInstructionsJson() {
+        const steps = Array.from(document.querySelectorAll('.instruction-input')).map(input => input.value.trim()).filter(Boolean);
+        document.getElementById('instructions_json').value = JSON.stringify(steps);
+    }
+    function updateKeyPointsJson() {
+        const points = Array.from(document.querySelectorAll('.keypoint-input')).map(input => input.value.trim()).filter(Boolean);
+        document.getElementById('key_points_json').value = JSON.stringify(points);
+    }
+    document.getElementById('add-instruction').addEventListener('click', function() {
+        const ul = document.getElementById('instructions-list');
+        const li = document.createElement('li');
+        li.className = 'list-group-item d-flex align-items-center';
+        li.innerHTML = '<input type="text" class="form-control me-2 instruction-input" placeholder="Step..." />' +
+            '<button type="button" class="btn btn-danger btn-sm remove-instruction">&times;</button>';
+        ul.appendChild(li);
+        li.querySelector('.remove-instruction').addEventListener('click', function() {
+            li.remove();
+            updateInstructionsJson();
+        });
+        li.querySelector('.instruction-input').addEventListener('input', updateInstructionsJson);
+        updateInstructionsJson();
+    });
+    document.querySelectorAll('.remove-instruction').forEach(btn => {
+        btn.addEventListener('click', function() {
+            btn.closest('li').remove();
+            updateInstructionsJson();
+        });
+    });
+    document.querySelectorAll('.instruction-input').forEach(input => {
+        input.addEventListener('input', updateInstructionsJson);
+    });
+    document.getElementById('add-keypoint').addEventListener('click', function() {
+        const ul = document.getElementById('keypoints-list');
+        const li = document.createElement('li');
+        li.className = 'list-group-item d-flex align-items-center';
+        li.innerHTML = '<input type="text" class="form-control me-2 keypoint-input" placeholder="Key point..." />' +
+            '<button type="button" class="btn btn-danger btn-sm remove-keypoint">&times;</button>';
+        ul.appendChild(li);
+        li.querySelector('.remove-keypoint').addEventListener('click', function() {
+            li.remove();
+            updateKeyPointsJson();
+        });
+        li.querySelector('.keypoint-input').addEventListener('input', updateKeyPointsJson);
+        updateKeyPointsJson();
+    });
+    document.querySelectorAll('.remove-keypoint').forEach(btn => {
+        btn.addEventListener('click', function() {
+            btn.closest('li').remove();
+            updateKeyPointsJson();
+        });
+    });
+    document.querySelectorAll('.keypoint-input').forEach(input => {
+        input.addEventListener('input', updateKeyPointsJson);
+    });
+    // On form submit, update hidden fields
+    document.querySelector('form').addEventListener('submit', function(e) {
+        updateInstructionsJson();
+        updateKeyPointsJson();
+    });
+});
+</script> 

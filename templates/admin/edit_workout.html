@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Workout - Admin{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-warning text-dark">
+                    <h4 class="mb-0">
+                        <i class="fas fa-edit me-2"></i>Edit Workout
+                    </h4>
+                </div>
+                <div class="card-body">
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+
+                    <form method="POST">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label">Workout Name *</label>
+                                <input type="text" class="form-control" id="name" name="name" 
+                                       value="{{ workout.name }}" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="category" class="form-label">Category</label>
+                                <select class="form-select" id="category" name="category">
+                                    <option value="Cardio" {% if workout.category == 'Cardio' %}selected{% endif %}>Cardio</option>
+                                    <option value="Strength" {% if workout.category == 'Strength' %}selected{% endif %}>Strength</option>
+                                    <option value="Flexibility" {% if workout.category == 'Flexibility' %}selected{% endif %}>Flexibility</option>
+                                    <option value="HIIT" {% if workout.category == 'HIIT' %}selected{% endif %}>HIIT</option>
+                                    <option value="Yoga" {% if workout.category == 'Yoga' %}selected{% endif %}>Yoga</option>
+                                    <option value="Pilates" {% if workout.category == 'Pilates' %}selected{% endif %}>Pilates</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="duration" class="form-label">Duration (minutes) *</label>
+                                <input type="number" class="form-control" id="duration" name="duration" 
+                                       value="{{ workout.duration }}" min="5" max="180" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="difficulty" class="form-label">Difficulty Level</label>
+                                <select class="form-select" id="difficulty" name="difficulty">
+                                    <option value="Beginner" {% if workout.difficulty == 'Beginner' %}selected{% endif %}>Beginner</option>
+                                    <option value="Intermediate" {% if workout.difficulty == 'Intermediate' %}selected{% endif %}>Intermediate</option>
+                                    <option value="Advanced" {% if workout.difficulty == 'Advanced' %}selected{% endif %}>Advanced</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description *</label>
+                            <textarea class="form-control" id="description" name="description" rows="4" required>{{ workout.description }}</textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="image_url" class="form-label">Image URL</label>
+                            <input type="url" class="form-control" id="image_url" name="image_url" 
+                                   value="{{ workout.image_url }}" placeholder="https://example.com/image.jpg">
+                            <div class="form-text">Optional: URL to workout image</div>
+                        </div>
+
+                        <hr class="my-4">
+                        <h5>Workout Exercises</h5>
+                        <ul class="list-group mb-3">
+                            {% for exercise in workout.exercises %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>
+                                    <strong>{{ exercise.name }}</strong>
+                                    <small class="text-muted ms-2">{{ exercise.muscle_group }} | {{ exercise.equipment }}</small>
+                                </span>
+                                <span>
+                                    <a href="{{ url_for('admin_edit_exercise', exercise_id=exercise.id) }}" class="btn btn-sm btn-outline-primary me-2">Edit</a>
+                                    <!-- Dedicated remove route -->
+                                    <form method="post" action="{{ url_for('admin_remove_exercise_from_workout', workout_id=workout.id, exercise_id=exercise.id) }}" style="display:inline;">
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">Remove</button>
+                                    </form>
+                                </span>
+                                <!-- Fallback: Patch old hidden form to include all fields (not shown, but left for robustness) -->
+                                <form id="remove-exercise-{{ exercise.id }}" method="post" action="{{ url_for('admin_edit_workout', workout_id=workout.id) }}" style="display:none;">
+                                    <input type="hidden" name="remove_exercise_id" value="{{ exercise.id }}">
+                                    <input type="hidden" name="name" value="{{ workout.name }}">
+                                    <input type="hidden" name="description" value="{{ workout.description }}">
+                                    <input type="hidden" name="duration" value="{{ workout.duration }}">
+                                    <input type="hidden" name="difficulty" value="{{ workout.difficulty }}">
+                                    <input type="hidden" name="category" value="{{ workout.category }}">
+                                    <input type="hidden" name="image_url" value="{{ workout.image_url }}">
+                                    {% for ex in workout.exercises %}
+                                        <input type="hidden" name="add_exercises" value="{{ ex.id }}">
+                                    {% endfor %}
+                                </form>
+                            </li>
+                            {% else %}
+                            <li class="list-group-item text-muted">No exercises in this workout yet.</li>
+                            {% endfor %}
+                        </ul>
+                        <div class="mb-3">
+                            <label for="add_exercises" class="form-label">Add Existing Exercises</label>
+                            <select class="form-select" id="add_exercises" name="add_exercises" multiple>
+                                {% for exercise in all_exercises %}
+                                    <option value="{{ exercise.id }}" {% if exercise in workout.exercises %}selected{% endif %}>
+                                        {{ exercise.name }} ({{ exercise.muscle_group }}, {{ exercise.equipment }})
+                                    </option>
+                                {% endfor %}
+                            </select>
+                            <div class="form-text">Hold Ctrl (Windows) or Cmd (Mac) to select multiple exercises.</div>
+                        </div>
+                        <a href="{{ url_for('admin_add_exercise') }}" target="_blank" class="btn btn-outline-success mb-3">
+                            <i class="fas fa-plus me-2"></i>Create New Exercise
+                        </a>
+
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-warning">
+                                <i class="fas fa-save me-2"></i>Update Workout
+                            </button>
+                            <a href="{{ url_for('admin_workouts') }}" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left me-2"></i>Back to Workouts
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Diet Plans{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="row mb-4">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <h2 class="mb-0">Browse Diet Plans</h2>
+            <a href="{{ url_for('add_diet_plan') }}" class="btn btn-primary">+ Create Diet Plan</a>
+        </div>
+    </div>
+    <div class="row g-4">
+        {% for plan in plans %}
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+                <img src="{{ plan.image_url if plan.image_url else url_for('static', filename='images/' + plan.name|lower + '.jpg') }}" class="card-img-top" alt="{{ plan.name }}" style="height: 180px; object-fit: cover;">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ plan.name }}</h5>
+                    <span class="badge bg-primary mb-2">{{ plan.goal }}</span>
+                    <p class="card-text small text-muted mb-2">{{ plan.description[:60] }}{% if plan.description|length > 60 %}...{% endif %}</p>
+                    <div class="mt-auto">
+                        <a href="{{ url_for('view_diet_plan', plan_id=plan.id) }}" class="btn btn-outline-primary btn-sm">View Plan</a>
+                        {% if current_user.is_authenticated %}
+                            {% if plan.id in current_user.followed_diet_plans|map(attribute='id') %}
+                                <span class="badge bg-success ms-2">Following</span>
+                            {% else %}
+                                <form method="POST" action="{{ url_for('follow_diet_plan', plan_id=plan.id) }}" class="d-inline ms-2">
+                                    <button type="submit" class="btn btn-success btn-sm">Start Plan</button>
+                                </form>
+                            {% endif %}
+                        {% endif %}
+                        <span class="badge bg-info ms-2">{{ 'Public' if plan.is_public else 'Private' }}</span>
+                    </div>
+                </div>
+                <div class="card-footer bg-light small text-muted">
+                    By {{ plan.creator.username if plan.creator else 'Unknown' }}
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="col-12">
+            <div class="alert alert-info">No diet plans found. <a href="{{ url_for('add_diet_plan') }}">Create one?</a></div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %} 

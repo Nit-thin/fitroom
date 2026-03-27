@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block title %}Add Diet Plan{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Create Diet Plan</h4>
+                </div>
+                <div class="card-body">
+                    <form id="dietPlanForm" method="POST" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Plan Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="goal" class="form-label">Goal</label>
+                            <input type="text" class="form-control" id="goal" name="goal" placeholder="e.g. Weight Loss, Muscle Gain">
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Image</label>
+                            <input class="form-control" type="file" id="image" name="image">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Meals</label>
+                            <div id="mealsList"></div>
+                            <button type="button" class="btn btn-outline-primary mt-2" onclick="addMeal()">+ Add Meal</button>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Make Public?</label>
+                            <input type="checkbox" name="is_public" checked>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Create Plan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+let mealCount = 0;
+function addMeal() {
+    mealCount++;
+    const mealDiv = document.createElement('div');
+    mealDiv.className = 'card mb-3';
+    mealDiv.innerHTML = `
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h6 class="mb-0">Meal <span class="meal-number">${mealCount}</span></h6>
+                <button type="button" class="btn btn-sm btn-danger" onclick="this.closest('.card').remove()">Remove</button>
+            </div>
+            <div class="row g-2">
+                <div class="col-md-4">
+                    <input type="text" class="form-control" name="meal_name_${mealCount}" placeholder="Meal Name (e.g. Breakfast)" required>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" name="meal_type_${mealCount}" placeholder="Type (Breakfast/Lunch/etc.)">
+                </div>
+                <div class="col-md-4">
+                    <input type="number" class="form-control" name="meal_calories_${mealCount}" placeholder="Calories">
+                </div>
+            </div>
+            <div class="mt-2">
+                <textarea class="form-control" name="meal_foods_${mealCount}" rows="2" placeholder="Foods/Ingredients (comma separated)"></textarea>
+            </div>
+            <div class="mt-2">
+                <textarea class="form-control" name="meal_notes_${mealCount}" rows="1" placeholder="Notes (optional)"></textarea>
+            </div>
+        </div>
+    `;
+    document.getElementById('mealsList').appendChild(mealDiv);
+}
+</script>
+{% endblock %} 

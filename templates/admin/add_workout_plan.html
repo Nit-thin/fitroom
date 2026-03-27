@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+
+{% block title %}Add Workout Plan - Admin{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h3 class="mb-0">
+                        <i class="fas fa-plus text-warning me-2"></i>Add New Workout Plan
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <form method="POST" enctype="multipart/form-data">
+                        <!-- Basic Information -->
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label for="name" class="form-label">Plan Name *</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="goal" class="form-label">Goal</label>
+                                <select class="form-select" id="goal" name="goal">
+                                    <option value="">Select Goal</option>
+                                    <option value="Weight Loss">Weight Loss</option>
+                                    <option value="Muscle Gain">Muscle Gain</option>
+                                    <option value="Strength">Strength</option>
+                                    <option value="Endurance">Endurance</option>
+                                    <option value="General Fitness">General Fitness</option>
+                                    <option value="Athletic Performance">Athletic Performance</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <label for="duration_days" class="form-label">Duration (Days)</label>
+                                <input type="number" class="form-control" id="duration_days" name="duration_days" min="1" placeholder="e.g., 30">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="image" class="form-label">Plan Image</label>
+                                <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check mt-4">
+                                    <input class="form-check-input" type="checkbox" id="is_public" name="is_public" checked>
+                                    <label class="form-check-label" for="is_public">
+                                        Make this plan public
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <hr class="my-4">
+                        
+                        <!-- Workout Days Section -->
+                        <h5 class="mb-3">
+                            <i class="fas fa-calendar-alt text-warning me-2"></i>Workout Days
+                        </h5>
+                        <div id="days-container">
+                            <!-- Day 1 -->
+                            <div class="day-entry border rounded p-3 mb-3">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Day 1 Workouts *</label>
+                                        <input type="text" class="form-control" name="day_workouts_1" required placeholder="e.g., Full Body HIIT, Core Strength">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Day Number</label>
+                                        <input type="number" class="form-control" value="1" readonly>
+                                    </div>
+                                </div>
+                                <div class="mt-2">
+                                    <label class="form-label">Notes</label>
+                                    <textarea class="form-control" name="day_notes_1" rows="2" placeholder="Optional notes about this day's workout"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <button type="button" class="btn btn-outline-warning" onclick="addDay()">
+                                <i class="fas fa-plus me-2"></i>Add Another Day
+                            </button>
+                        </div>
+                        
+                        <!-- Submit Buttons -->
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-warning">
+                                <i class="fas fa-save me-2"></i>Create Workout Plan
+                            </button>
+                            <a href="{{ url_for('admin_workout_plans') }}" class="btn btn-outline-secondary">
+                                <i class="fas fa-times me-2"></i>Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+let dayCount = 1;
+
+function addDay() {
+    dayCount++;
+    const container = document.getElementById('days-container');
+    const dayDiv = document.createElement('div');
+    dayDiv.className = 'day-entry border rounded p-3 mb-3';
+    dayDiv.innerHTML = `
+        <div class="row">
+            <div class="col-md-6">
+                <label class="form-label">Day ${dayCount} Workouts *</label>
+                <input type="text" class="form-control" name="day_workouts_${dayCount}" required placeholder="e.g., Upper Body Strength, Cardio">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Day Number</label>
+                <input type="number" class="form-control" value="${dayCount}" readonly>
+            </div>
+        </div>
+        <div class="mt-2">
+            <label class="form-label">Notes</label>
+            <textarea class="form-control" name="day_notes_${dayCount}" rows="2" placeholder="Optional notes about this day's workout"></textarea>
+        </div>
+        <div class="mt-2">
+            <button type="button" class="btn btn-outline-danger btn-sm" onclick="removeDay(this)">
+                <i class="fas fa-trash me-1"></i>Remove Day
+            </button>
+        </div>
+    `;
+    container.appendChild(dayDiv);
+}
+
+function removeDay(button) {
+    button.closest('.day-entry').remove();
+    // Update day numbers
+    const days = document.querySelectorAll('.day-entry');
+    days.forEach((day, index) => {
+        const dayNumber = index + 1;
+        const dayNumberInput = day.querySelector('input[readonly]');
+        const dayLabel = day.querySelector('label');
+        const dayWorkoutsInput = day.querySelector('input[name^="day_workouts_"]');
+        const dayNotesInput = day.querySelector('textarea[name^="day_notes_"]');
+        
+        dayNumberInput.value = dayNumber;
+        dayLabel.textContent = `Day ${dayNumber} Workouts *`;
+        dayWorkoutsInput.name = `day_workouts_${dayNumber}`;
+        dayNotesInput.name = `day_notes_${dayNumber}`;
+    });
+    dayCount = days.length;
+}
+</script>
+{% endblock %} 

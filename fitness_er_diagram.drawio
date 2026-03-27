@@ -1,0 +1,477 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36" version="28.2.3">
+  <diagram name="Fitness ER Diagram" id="fitness-er-diagram">
+    <mxGraphModel dx="1389" dy="1704" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="user" value="USER" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="200" y="100" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="user_id" value="id (PK)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="179" y="180" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="user_username" value="username" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="250" y="190" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="user_email" value="email" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="310" y="170" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="user_is_admin" value="is_admin" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="200" y="220" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="user_created_at" value="created_at" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="310" y="210" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="login" value="LOGIN" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="200" y="300" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="login_session_id" value="session_id" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="180" y="380" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="login_time" value="login_time" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="258" y="380" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="home" value="HOME&#xa;(Dashboard)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="200" y="500" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="home_user_id" value="user_id" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="180" y="580" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="home_last_visit" value="last_visit" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="250" y="580" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="workout" value="WORKOUT" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="500" y="100" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="workout_id" value="id (PK)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="510" y="180" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="workout_name" value="name" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="565" y="180" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="workout_duration" value="duration" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="450" y="210" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="workout_difficulty" value="difficulty" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="595" y="206" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="exercise" value="EXERCISE" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="880" y="110" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="exercise_id" value="id (PK)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="890" y="231" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="exercise_name" value="name" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="1000" y="190" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="exercise_muscle_group" value="muscle_group" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="840" y="197.5" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="exercise_equipment" value="equipment" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="970" y="220" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="diet_plan" value="DIET_PLAN" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="500" y="300" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="diet_plan_id" value="id (PK)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="480" y="380" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="diet_plan_name" value="name" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="555" y="380" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="diet_plan_goal" value="goal" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="531" y="414" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="diet_plan_is_public" value="is_public" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="620" y="404" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="meal" value="MEAL" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="880" y="300" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="meal_id" value="id (PK)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="840" y="374" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="meal_name" value="name" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="1000" y="394" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="meal_calories" value="calories" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="881" y="404" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="meal_type" value="meal_type" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="930" y="374" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="logging" value="LOGGING" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="500" y="500" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="logging_id" value="id (PK)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="460" y="575" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="logging_date" value="date" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="545" y="585" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="logging_activity_type" value="activity_type" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="500" y="610" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="logging_completed" value="completed" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="605" y="600" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="results" value="RESULTS&#xa;(Progress)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="880" y="500" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="results_id" value="id (PK)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="990" y="585" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="results_workout_count" value="workout_count" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="930" y="600" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="results_progress" value="progress_%" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="860" y="585" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="workout_exercises" value="WORKOUT_EXERCISES&#xa;(Junction)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="710" y="236" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="we_workout_id" value="workout_id (FK)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="535" y="215" width="60" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="we_exercise_id" value="exercise_id (FK)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="920" y="200" width="60" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="has" value="Has" style="rhombus;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="50" y="221" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="accesses" value="Accesses" style="rhombus;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="40" y="430" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="contains_workout" value="Contains" style="rhombus;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="720" y="60" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="contains_diet" value="Contains" style="rhombus;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="720" y="399" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="logged" value="Logged" style="rhombus;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="720" y="500" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="generates" value="Generates" style="rhombus;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="720" y="575" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="user_to_has" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;exitX=0;exitY=0.75;exitDx=0;exitDy=0;" parent="1" source="user" target="has" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="260" y="160" as="sourcePoint" />
+            <mxPoint x="300" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="has_to_login" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;" parent="1" source="has" target="login" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="300" y="240" as="sourcePoint" />
+            <mxPoint x="260" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="login_to_accesses" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;" parent="1" target="accesses" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="200" y="340" as="sourcePoint" />
+            <mxPoint x="300" y="420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="accesses_to_home" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;" parent="1" source="accesses" target="home" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="300" y="440" as="sourcePoint" />
+            <mxPoint x="260" y="500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="home_to_workout" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="home" target="workout" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="320" y="530" as="sourcePoint" />
+            <mxPoint x="500" y="130" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="home_to_diet" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" parent="1" source="home" target="diet_plan" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="320" y="530" as="sourcePoint" />
+            <mxPoint x="500" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="workout_to_contains" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;" parent="1" source="workout" target="contains_workout" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="560" y="160" as="sourcePoint" />
+            <mxPoint x="580" y="170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="contains_to_exercise" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;" parent="1" source="contains_workout" target="exercise" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="660" y="170" as="sourcePoint" />
+            <mxPoint x="700" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="workout_to_we" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;exitX=1;exitY=1;exitDx=0;exitDy=0;" parent="1" source="workout" target="workout_exercises" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="560" y="160" as="sourcePoint" />
+            <mxPoint x="600" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="exercise_to_we" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;exitX=0;exitY=1;exitDx=0;exitDy=0;" parent="1" source="exercise" target="workout_exercises" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="700" y="160" as="sourcePoint" />
+            <mxPoint x="700" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="diet_to_contains" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;" parent="1" source="diet_plan" target="contains_diet" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="560" y="360" as="sourcePoint" />
+            <mxPoint x="580" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="contains_diet_to_meal" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;" parent="1" source="contains_diet" target="meal" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="660" y="370" as="sourcePoint" />
+            <mxPoint x="700" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="home_to_logging" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;" parent="1" source="home" target="logging" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="320" y="530" as="sourcePoint" />
+            <mxPoint x="500" y="500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="logging_to_generates" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;" parent="1" source="logging" target="generates" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="560" y="530" as="sourcePoint" />
+            <mxPoint x="620" y="550" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="generates_to_results" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;" parent="1" source="generates" target="results" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="700" y="570" as="sourcePoint" />
+            <mxPoint x="700" y="500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="user_to_id" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=1;strokeColor=#666666;" parent="1" source="user" target="user_id" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="240" y="160" as="sourcePoint" />
+            <mxPoint x="210" y="180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="user_to_username" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=1;strokeColor=#666666;" parent="1" source="user" target="user_username" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="260" y="160" as="sourcePoint" />
+            <mxPoint x="280" y="180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="user_to_email" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=1;strokeColor=#666666;" parent="1" source="user" target="user_email" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="280" y="160" as="sourcePoint" />
+            <mxPoint x="350" y="180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="user_to_is_admin" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=1;strokeColor=#666666;" parent="1" source="user" target="user_is_admin" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="240" y="160" as="sourcePoint" />
+            <mxPoint x="210" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="user_to_created_at" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=1;strokeColor=#666666;" parent="1" source="user" target="user_created_at" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="260" y="160" as="sourcePoint" />
+            <mxPoint x="280" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="title" value="Fitness Application - Entity Relationship Diagram" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="425" y="-60" width="400" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_title" value="Legend:" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="50" y="700" width="100" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_entity" value="Entity" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="50" y="730" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_attribute" value="Attribute" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="120" y="730" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_relationship" value="Relationship" style="rhombus;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="190" y="730" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_junction" value="Junction Table" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="260" y="730" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_lunCFfQovDy-Z5GZIkZ-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="exercise_equipment" target="exercise_equipment">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_lunCFfQovDy-Z5GZIkZ-6" value="" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="home_user_id" target="home">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="190" y="600" as="sourcePoint" />
+            <mxPoint x="240" y="550" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_lunCFfQovDy-Z5GZIkZ-13" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="270" y="590" as="sourcePoint" />
+            <mxPoint x="320" y="540" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_lunCFfQovDy-Z5GZIkZ-14" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1" source="workout_id">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="530" y="159.28932188134524" as="sourcePoint" />
+            <mxPoint x="540" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_lunCFfQovDy-Z5GZIkZ-15" value="" style="endArrow=none;html=1;rounded=0;entryX=0.607;entryY=1.009;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="workout_name" target="workout">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="580" y="159.28932188134524" as="sourcePoint" />
+            <mxPoint x="580" y="109.28932188134524" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_lunCFfQovDy-Z5GZIkZ-16" value="" style="endArrow=none;html=1;rounded=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="workout_duration" target="workout">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="510" y="199.28932188134524" as="sourcePoint" />
+            <mxPoint x="510" y="149.28932188134524" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_lunCFfQovDy-Z5GZIkZ-17" value="" style="endArrow=none;html=1;rounded=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="workout_difficulty" target="workout">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="580" y="199.28932188134524" as="sourcePoint" />
+            <mxPoint x="580" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_lunCFfQovDy-Z5GZIkZ-18" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="we_workout_id" target="workout">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="555" y="229.28932188134524" as="sourcePoint" />
+            <mxPoint x="555" y="179.28932188134524" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_lunCFfQovDy-Z5GZIkZ-19" value="" style="endArrow=none;html=1;rounded=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="login_session_id" target="login">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="210" y="359.28932188134524" as="sourcePoint" />
+            <mxPoint x="210" y="309.28932188134524" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_lunCFfQovDy-Z5GZIkZ-20" value="" style="endArrow=none;html=1;rounded=0;entryX=0.607;entryY=1.001;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="login_time" target="login">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="280" y="359.28932188134524" as="sourcePoint" />
+            <mxPoint x="280" y="309.28932188134524" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_lunCFfQovDy-Z5GZIkZ-21" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="logging_id" target="logging">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="510" y="559.2893218813452" as="sourcePoint" />
+            <mxPoint x="510" y="509.28932188134524" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_lunCFfQovDy-Z5GZIkZ-22" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="logging_date" target="logging">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="580" y="559.2893218813452" as="sourcePoint" />
+            <mxPoint x="580" y="509.28932188134524" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_lunCFfQovDy-Z5GZIkZ-23" value="" style="endArrow=none;html=1;rounded=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="logging_activity_type" target="logging">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="510" y="599.2893218813452" as="sourcePoint" />
+            <mxPoint x="510" y="549.2893218813452" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_lunCFfQovDy-Z5GZIkZ-24" value="" style="endArrow=none;html=1;rounded=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="logging_completed" target="logging">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="580" y="599.2893218813452" as="sourcePoint" />
+            <mxPoint x="580" y="549.2893218813452" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_lunCFfQovDy-Z5GZIkZ-25" value="" style="endArrow=none;html=1;rounded=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="results_progress" target="results">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="780" y="599.2893218813452" as="sourcePoint" />
+            <mxPoint x="780" y="549.2893218813452" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_lunCFfQovDy-Z5GZIkZ-26" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="results_workout_count" target="results">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="820" y="559.2893218813452" as="sourcePoint" />
+            <mxPoint x="820" y="509.28932188134524" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_lunCFfQovDy-Z5GZIkZ-27" value="" style="endArrow=none;html=1;rounded=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="results_id" target="results">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="900" y="559.2893218813452" as="sourcePoint" />
+            <mxPoint x="900" y="509.28932188134524" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_lunCFfQovDy-Z5GZIkZ-28" value="" style="endArrow=none;html=1;rounded=0;entryX=0.167;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="meal_id" target="meal">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="800" y="363.28932188134524" as="sourcePoint" />
+            <mxPoint x="800" y="313.28932188134524" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_lunCFfQovDy-Z5GZIkZ-29" value="" style="endArrow=none;html=1;rounded=0;entryX=0.41;entryY=1.01;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="meal_calories" target="meal">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="830" y="399.28932188134524" as="sourcePoint" />
+            <mxPoint x="830" y="349.28932188134524" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_lunCFfQovDy-Z5GZIkZ-30" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="meal_type" target="meal">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="900" y="399.28932188134524" as="sourcePoint" />
+            <mxPoint x="860" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_lunCFfQovDy-Z5GZIkZ-31" value="" style="endArrow=none;html=1;rounded=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="meal_name" target="meal">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="910" y="363.28932188134524" as="sourcePoint" />
+            <mxPoint x="830" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_lunCFfQovDy-Z5GZIkZ-32" value="" style="endArrow=none;html=1;rounded=0;entryX=0.17;entryY=0.963;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="diet_plan_id" target="diet_plan">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="510" y="359.28932188134524" as="sourcePoint" />
+            <mxPoint x="510" y="309.28932188134524" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_lunCFfQovDy-Z5GZIkZ-33" value="" style="endArrow=none;html=1;rounded=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="diet_plan_goal" target="diet_plan">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="510" y="399.28932188134524" as="sourcePoint" />
+            <mxPoint x="510" y="349.28932188134524" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_lunCFfQovDy-Z5GZIkZ-34" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="diet_plan_name" target="diet_plan">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="580" y="359.28932188134524" as="sourcePoint" />
+            <mxPoint x="580" y="309.28932188134524" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_lunCFfQovDy-Z5GZIkZ-35" value="" style="endArrow=none;html=1;rounded=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="diet_plan_is_public" target="diet_plan">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="580" y="399.28932188134524" as="sourcePoint" />
+            <mxPoint x="580" y="349.28932188134524" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_lunCFfQovDy-Z5GZIkZ-36" value="" style="endArrow=none;html=1;rounded=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="exercise_id" target="exercise">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="830" y="159.28932188134524" as="sourcePoint" />
+            <mxPoint x="830" y="109.28932188134524" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_lunCFfQovDy-Z5GZIkZ-37" value="" style="endArrow=none;html=1;rounded=0;entryX=0.157;entryY=0.997;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="exercise_muscle_group" target="exercise">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="830" y="205.28932188134524" as="sourcePoint" />
+            <mxPoint x="830" y="155.28932188134524" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_lunCFfQovDy-Z5GZIkZ-38" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="we_exercise_id" target="exercise">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="900" y="189.28932188134524" as="sourcePoint" />
+            <mxPoint x="900" y="139.28932188134524" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_lunCFfQovDy-Z5GZIkZ-39" value="" style="endArrow=none;html=1;rounded=0;entryX=1;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="exercise_name" target="exercise">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="970" y="169.28932188134524" as="sourcePoint" />
+            <mxPoint x="970" y="119.28932188134524" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_lunCFfQovDy-Z5GZIkZ-40" value="" style="endArrow=none;html=1;rounded=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="exercise_equipment" target="exercise">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="960" y="199.28932188134524" as="sourcePoint" />
+            <mxPoint x="960" y="149.28932188134524" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
+

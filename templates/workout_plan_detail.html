@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% block title %}{{ plan.name }} - Workout Plan{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm mb-4">
+                <div class="row g-0">
+                    {% if plan.image_url %}
+                    <div class="col-md-4">
+                        <img src="{{ plan.image_url }}" class="img-fluid rounded-start h-100 w-100 object-fit-cover" alt="{{ plan.name }}">
+                    </div>
+                    {% endif %}
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h2 class="card-title mb-2">{{ plan.name }}</h2>
+                            <span class="badge bg-primary me-2">{{ plan.goal }}</span>
+                            <span class="badge bg-success">{{ 'Public' if plan.is_public else 'Private' }}</span>
+                            <span class="badge bg-info ms-2">{{ plan.duration_days }} days</span>
+                            <p class="card-text mt-2">{{ plan.description }}</p>
+                            <p class="card-text"><small class="text-muted">Created by {{ creator.username }}</small></p>
+                            
+                            <!-- Plan Actions Section -->
+                            <div class="mt-3">
+                                <!-- Always show View Plan Details button -->
+                                <a href="#schedule-section" class="btn btn-outline-info me-2">
+                                    <i class="fas fa-eye me-2"></i>View Plan Details
+                                </a>
+                                
+                                <!-- Follow/Start Plan Section -->
+                                {% if current_user.is_authenticated %}
+                                    {% if is_following %}
+                                        <div class="alert alert-success mt-2">
+                                            <i class="fas fa-check-circle me-2"></i>
+                                            <strong>You're following this plan!</strong>
+                                            {% if start_date %}
+                                                <br><small class="text-muted">
+                                                    <i class="fas fa-calendar me-1"></i>
+                                                    Started on {{ start_date.strftime('%B %d, %Y') }}
+                                                                                                {% if current_day %}
+                                                <br><i class="fas fa-fire me-1"></i>
+                                                Currently on Day {{ current_day }} of {{ plan.duration_days }}
+                                            {% endif %}
+                                        </small>
+                                    {% endif %}
+                                    <div class="mt-2">
+                                        <a href="{{ url_for('my_plans') }}" class="btn btn-outline-success btn-sm me-2">View Progress</a>
+                                        {% if current_day %}
+                                            {% if today_completed %}
+                                                <button class="btn btn-success btn-sm" disabled>
+                                                    <i class="fas fa-check me-1"></i>Today's Workout Completed
+                                                </button>
+                                            {% else %}
+                                                <a href="{{ url_for('start_todays_workout', plan_id=plan.id) }}" class="btn btn-warning btn-sm">
+                                                    <i class="fas fa-dumbbell me-1"></i>Start Today's Workout
+                                                </a>
+                                            {% endif %}
+                                        {% endif %}
+                                    </div>
+                                        </div>
+                                    {% else %}
+                                        <form method="POST" action="{{ url_for('follow_workout_plan', plan_id=plan.id) }}" class="d-inline">
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="fas fa-play me-2"></i>Start This Plan
+                                            </button>
+                                        </form>
+                                    {% endif %}
+                                {% else %}
+                                    <a href="{{ url_for('login') }}" class="btn btn-primary">
+                                        <i class="fas fa-sign-in-alt me-2"></i>Login to Start Plan
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card shadow-sm" id="schedule-section">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Plan Schedule</h5>
+                </div>
+                <div class="card-body">
+                    {% if days %}
+                        <div class="list-group">
+                            {% for day in days %}
+                            <div class="list-group-item mb-3 {% if current_day and day.day_number == current_day %}border-primary bg-light{% endif %}">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h6 class="mb-1">
+                                        Day {{ day.day_number }}
+                                        {% if current_day and day.day_number == current_day %}
+                                            <span class="badge bg-primary ms-2">
+                                                <i class="fas fa-fire me-1"></i>Today
+                                            </span>
+                                            {% if today_completed %}
+                                                <span class="badge bg-success ms-2">
+                                                    <i class="fas fa-check me-1"></i>Completed
+                                                </span>
+                                            {% endif %}
+                                        {% endif %}
+                                    </h6>
+                                </div>
+                                <div class="mt-2">
+                                    <strong>Workouts:</strong> {{ day.workouts }}
+                                </div>
+                                {% if day.notes %}
+                                <div class="mt-1 text-muted"><em>{{ day.notes }}</em></div>
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="text-muted">No days added to this plan yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

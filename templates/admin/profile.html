@@ -1,0 +1,346 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Profile - Be Fit & Fine{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- Admin Profile Header -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card bg-gradient-primary text-white">
+                <div class="card-body p-5">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h1 class="display-5 fw-bold mb-3">
+                                <span style="font-family: 'Pacifico', cursive; color: #fff; text-shadow: 1px 1px 6px #6366f1, 0 2px 8px #0002; font-size: 1.5rem; vertical-align: middle;">💪 <span style='font-size:1.2rem;'>Be</span> <span style='font-size:2.2rem;'>Fit & Fine</span></span>
+                            </h1>
+                            <p class="lead mb-2">Welcome back, {{ current_user.username }}!</p>
+                            <p class="mb-0 opacity-75">Platform Administrator • Managing {{ total_users }} users</p>
+                        </div>
+                        <div class="col-md-4 text-md-end">
+                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=200&q=80" alt="Admin" class="img-fluid rounded-circle shadow" style="width: 80px; height: 80px; object-fit: cover; border: 3px solid #fff; margin-bottom: 1rem;">
+                            <div class="d-flex gap-2 flex-wrap justify-content-md-end">
+                                <a href="{{ url_for('admin_dashboard') }}" class="btn btn-light btn-sm">
+                                    <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                                </a>
+                                <a href="{{ url_for('admin_users') }}" class="btn btn-outline-light btn-sm">
+                                    <i class="fas fa-users me-2"></i>Users
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Info Card -->
+    <div class="row mb-5">
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body text-center p-4">
+                    <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                        <i class="fas fa-user-shield fa-3x text-primary"></i>
+                    </div>
+                    <h4 class="fw-bold mb-1">{{ current_user.username }}</h4>
+                    <p class="text-muted mb-2">Platform Administrator</p>
+                    <div class="d-flex justify-content-center gap-2">
+                        <span class="badge bg-success">Admin</span>
+                        <span class="badge bg-primary">Verified</span>
+                    </div>
+                    <hr class="my-3">
+                    <div class="row text-center">
+                        <div class="col-6">
+                            <h5 class="fw-bold text-primary mb-1">{{ admin_created_workouts }}</h5>
+                            <small class="text-muted">Workouts Created</small>
+                        </div>
+                        <div class="col-6">
+                            <h5 class="fw-bold text-success mb-1">{{ total_exercises }}</h5>
+                            <small class="text-muted">Exercises Managed</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h5 class="mb-0 fw-bold">
+                        <i class="fas fa-chart-line me-2 text-primary"></i>Platform Statistics
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center p-3 bg-light rounded">
+                                <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                    <i class="fas fa-dumbbell text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="fw-bold text-primary mb-1">{{ total_workouts }}</h4>
+                                    <p class="text-muted mb-0">Total Workouts</p>
+                                    <small class="text-success">
+                                        <i class="fas fa-arrow-up me-1"></i>Active
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center p-3 bg-light rounded">
+                                <div class="bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                    <i class="fas fa-running text-success"></i>
+                                </div>
+                                <div>
+                                    <h4 class="fw-bold text-success mb-1">{{ total_exercises }}</h4>
+                                    <p class="text-muted mb-0">Total Exercises</p>
+                                    <small class="text-success">
+                                        <i class="fas fa-arrow-up me-1"></i>Available
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center p-3 bg-light rounded">
+                                <div class="bg-info bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                    <i class="fas fa-users text-info"></i>
+                                </div>
+                                <div>
+                                    <h4 class="fw-bold text-info mb-1">{{ total_users }}</h4>
+                                    <p class="text-muted mb-0">Registered Users</p>
+                                    <small class="text-success">
+                                        <i class="fas fa-arrow-up me-1"></i>Growing
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center p-3 bg-light rounded">
+                                <div class="bg-warning bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                    <i class="fas fa-chart-pie text-warning"></i>
+                                </div>
+                                <div>
+                                    <h4 class="fw-bold text-warning mb-1">100%</h4>
+                                    <p class="text-muted mb-0">Platform Uptime</p>
+                                    <small class="text-success">
+                                        <i class="fas fa-check-circle me-1"></i>Optimal
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Management Sections -->
+    <div class="row g-4">
+        <!-- Recent Workouts -->
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-white border-0">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0 fw-bold">
+                            <i class="fas fa-dumbbell me-2 text-primary"></i>Recent Workouts
+                        </h5>
+                        <a href="{{ url_for('admin_add_workout') }}" class="btn btn-primary btn-sm">
+                            <i class="fas fa-plus me-2"></i>Add New
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    {% if recent_workouts %}
+                        <div class="list-group list-group-flush">
+                            {% for workout in recent_workouts %}
+                            <div class="list-group-item border-0 d-flex align-items-center p-3">
+                                <div class="flex-shrink-0">
+                                    <img src="{{ url_for('static', filename='images/' + workout.name|lower + '.jpg') }}"
+                                         alt="{{ workout.name }}"
+                                         class="rounded" style="width: 50px; height: 35px; object-fit: cover;"
+                                         onerror="this.onerror=null;this.src={{ (workout.image_url if workout.image_url else url_for('static', filename='images/placeholder.jpg'))|tojson }};">
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h6 class="mb-1 fw-bold">{{ workout.name }}</h6>
+                                    <small class="text-muted">{{ workout.duration }} min • {{ workout.category }}</small>
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <a href="{{ url_for('admin_edit_workout', workout_id=workout.id) }}" 
+                                       class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="text-center py-4">
+                            <i class="fas fa-dumbbell fa-3x text-muted mb-3"></i>
+                            <p class="text-muted">No workouts created yet.</p>
+                            <a href="{{ url_for('admin_add_workout') }}" class="btn btn-primary btn-sm">
+                                <i class="fas fa-plus me-2"></i>Create First Workout
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Exercises -->
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-white border-0">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0 fw-bold">
+                            <i class="fas fa-running me-2 text-success"></i>Recent Exercises
+                        </h5>
+                        <a href="{{ url_for('admin_add_exercise') }}" class="btn btn-success btn-sm">
+                            <i class="fas fa-plus me-2"></i>Add New
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    {% if recent_exercises %}
+                        <div class="list-group list-group-flush">
+                            {% for exercise in recent_exercises %}
+                            <div class="list-group-item border-0 d-flex align-items-center p-3">
+                                <div class="flex-shrink-0">
+                                    <img src="{{ url_for('static', filename='images/' + exercise.name|lower + '.jpg') }}"
+                                         alt="{{ exercise.name }}"
+                                         class="rounded" style="width: 50px; height: 35px; object-fit: cover;"
+                                         onerror="this.onerror=null;this.src={{ (exercise.image_url if exercise.image_url else url_for('static', filename='images/placeholder.jpg'))|tojson }};">
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h6 class="mb-1 fw-bold">{{ exercise.name }}</h6>
+                                    <small class="text-muted">{{ exercise.muscle_group }} • {{ exercise.equipment }}</small>
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <a href="{{ url_for('admin_edit_exercise', exercise_id=exercise.id) }}" 
+                                       class="btn btn-sm btn-outline-success">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="text-center py-4">
+                            <i class="fas fa-running fa-3x text-muted mb-3"></i>
+                            <p class="text-muted">No exercises created yet.</p>
+                            <a href="{{ url_for('admin_add_exercise') }}" class="btn btn-success btn-sm">
+                                <i class="fas fa-plus me-2"></i>Create First Exercise
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Management Actions -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h5 class="mb-0 fw-bold">
+                        <i class="fas fa-bolt me-2 text-warning"></i>Quick Management Actions
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="d-grid">
+                                <a href="{{ url_for('admin_add_workout') }}" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-plus me-2"></i>Add Workout
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="d-grid">
+                                <a href="{{ url_for('admin_add_exercise') }}" class="btn btn-success btn-lg">
+                                    <i class="fas fa-plus me-2"></i>Add Exercise
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="d-grid">
+                                <a href="{{ url_for('admin_workouts') }}" class="btn btn-outline-primary">
+                                    <i class="fas fa-edit me-2"></i>Manage Workouts
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="d-grid">
+                                <a href="{{ url_for('admin_exercises') }}" class="btn btn-outline-success">
+                                    <i class="fas fa-edit me-2"></i>Manage Exercises
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- System Information -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h5 class="mb-0 fw-bold">
+                        <i class="fas fa-info-circle me-2 text-info"></i>System Information
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center p-3 bg-light rounded">
+                                <div class="bg-info bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                    <i class="fas fa-server text-info"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-1 fw-bold">Server Status</h6>
+                                    <p class="text-muted mb-0">All systems operational</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center p-3 bg-light rounded">
+                                <div class="bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                    <i class="fas fa-database text-success"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-1 fw-bold">Database</h6>
+                                    <p class="text-muted mb-0">SQLite - Healthy</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center p-3 bg-light rounded">
+                                <div class="bg-warning bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                    <i class="fas fa-shield-alt text-warning"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-1 fw-bold">Security</h6>
+                                    <p class="text-muted mb-0">All security measures active</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center p-3 bg-light rounded">
+                                <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                    <i class="fas fa-clock text-primary"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-1 fw-bold">Last Backup</h6>
+                                    <p class="text-muted mb-0">Today at 2:00 AM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

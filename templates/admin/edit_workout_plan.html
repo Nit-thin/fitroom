@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Workout Plan - Admin{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h3 class="mb-0">
+                        <i class="fas fa-edit text-warning me-2"></i>Edit Workout Plan: {{ plan.name }}
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <form method="POST" enctype="multipart/form-data">
+                        <!-- Basic Information -->
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label for="name" class="form-label">Plan Name *</label>
+                                <input type="text" class="form-control" id="name" name="name" value="{{ plan.name }}" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="goal" class="form-label">Goal</label>
+                                <select class="form-select" id="goal" name="goal">
+                                    <option value="">Select Goal</option>
+                                    <option value="Weight Loss" {% if plan.goal == 'Weight Loss' %}selected{% endif %}>Weight Loss</option>
+                                    <option value="Muscle Gain" {% if plan.goal == 'Muscle Gain' %}selected{% endif %}>Muscle Gain</option>
+                                    <option value="Strength" {% if plan.goal == 'Strength' %}selected{% endif %}>Strength</option>
+                                    <option value="Endurance" {% if plan.goal == 'Endurance' %}selected{% endif %}>Endurance</option>
+                                    <option value="General Fitness" {% if plan.goal == 'General Fitness' %}selected{% endif %}>General Fitness</option>
+                                    <option value="Athletic Performance" {% if plan.goal == 'Athletic Performance' %}selected{% endif %}>Athletic Performance</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" name="description" rows="3">{{ plan.description or '' }}</textarea>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <label for="duration_days" class="form-label">Duration (Days)</label>
+                                <input type="number" class="form-control" id="duration_days" name="duration_days" value="{{ plan.duration_days or '' }}" min="1" placeholder="e.g., 30">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="image" class="form-label">Plan Image</label>
+                                <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                                {% if plan.image_url %}
+                                <small class="text-muted">Current: {{ plan.image_url.split('/')[-1] }}</small>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check mt-4">
+                                    <input class="form-check-input" type="checkbox" id="is_public" name="is_public" {% if plan.is_public %}checked{% endif %}>
+                                    <label class="form-check-label" for="is_public">
+                                        Make this plan public
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <hr class="my-4">
+                        
+                        <!-- Workout Days Section -->
+                        <h5 class="mb-3">
+                            <i class="fas fa-calendar-alt text-warning me-2"></i>Workout Days
+                        </h5>
+                        <div id="days-container">
+                            {% for day in days %}
+                            <div class="day-entry border rounded p-3 mb-3">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Day {{ day.day_number }} Workouts *</label>
+                                        <input type="text" class="form-control" name="day_workouts_{{ day.id }}" value="{{ day.workouts or '' }}" required placeholder="e.g., Full Body HIIT, Core Strength">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Day Number</label>
+                                        <input type="number" class="form-control" value="{{ day.day_number }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="mt-2">
+                                    <label class="form-label">Notes</label>
+                                    <textarea class="form-control" name="day_notes_{{ day.id }}" rows="2" placeholder="Optional notes about this day's workout">{{ day.notes or '' }}</textarea>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        
+                        <!-- Submit Buttons -->
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-warning">
+                                <i class="fas fa-save me-2"></i>Update Workout Plan
+                            </button>
+                            <a href="{{ url_for('admin_workout_plans') }}" class="btn btn-outline-secondary">
+                                <i class="fas fa-times me-2"></i>Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

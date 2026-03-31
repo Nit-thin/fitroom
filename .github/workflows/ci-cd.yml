@@ -7,10 +7,8 @@ on:
     branches: [ master ]
 
 jobs:
-
   test:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout Code
       uses: actions/checkout@v4
@@ -26,12 +24,11 @@ jobs:
         pip install pytest
 
     - name: Run Tests
-      run: pytest
+      run: pytest tests/ -v
 
   build:
     needs: test
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v4
 
@@ -41,7 +38,6 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-
     steps:
     - name: Deploy
       run: echo "Deployment ready"
